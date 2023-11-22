@@ -10,8 +10,17 @@ public class CollisionController : MonoBehaviour
     [SerializeField] private Text coinText;
     [SerializeField] private float timeDestroy=3f;
     [SerializeField] private ParticleSystem particleDestroy;
+    [SerializeField] private GameObject losePanel;
+    [SerializeField] private GameObject gamePanel;
+    [SerializeField] private Text loseScoreText;
+    [SerializeField] private Text gameScoreText;
     private int currentCoin = 0;
 
+    private void Start()
+    {
+        Time.timeScale = 1f;
+        losePanel.SetActive(false);
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("let"))
@@ -33,6 +42,9 @@ public class CollisionController : MonoBehaviour
         Instantiate(particleDestroy, this.transform);
         yield return new WaitForSeconds(timeDestroy);
         PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") + currentCoin);
-        SceneManager.LoadScene(0);
+        losePanel.SetActive(true);
+        loseScoreText.text = gameScoreText.text;
+        gamePanel.SetActive(false);
+        Time.timeScale = 0f;
     }
 }
