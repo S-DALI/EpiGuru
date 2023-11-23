@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class DraggingController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class DraggingController : MonoBehaviour
     private float minX = -5f, maxX = 5f;
     private float raycastDistance = 1f;
 
+    private float buttonHorizontalSpeed = 0.5f;
     private void Update()
     {
         HandleTouchInput();

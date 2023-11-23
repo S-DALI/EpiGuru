@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class GeoLocationChecker : MonoBehaviour
 {
+    [SerializeField] private string validateRegionCode = "ua";
     void Start()
     {
         StartCoroutine(GetGeoLocation());
@@ -26,7 +26,7 @@ public class GeoLocationChecker : MonoBehaviour
 
             if (locationData != null && locationData != null)
             {
-                if (locationData.ToLower() != "ua")
+                if (locationData.ToLower() != validateRegionCode)
                 {
                     Application.OpenURL("https://uk.wikipedia.org/");
                 }

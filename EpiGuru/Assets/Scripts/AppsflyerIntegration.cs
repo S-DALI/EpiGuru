@@ -9,7 +9,6 @@ public class AppsflyerIntegration : MonoBehaviour
     void Start()
     {  
         AppsFlyer.initSDK(appsFlyerDevKey, appID);
-        AppsFlyer.startSDK();
 
         DontDestroyOnLoad(gameObject);
     }
